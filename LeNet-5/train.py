@@ -64,8 +64,11 @@ if __name__ == '__main__':
         if not os.path.isdir("models"):
             os.mkdir("models")
         torch.save(model, 'models/mnist_{:.3}.pkl'.format(accuracy * 100))
-        last_accuracy = accuracy
         if abs(accuracy - last_accuracy) < 1e-4:
+            last_accuracy = accuracy
             break
+        last_accuracy = accuracy
+    if os.path.exists('models/mnist_latest.pkl'):
+        os.remove('models/mnist_latest.pkl')
     os.rename('models/mnist_{:.3}.pkl'.format(last_accuracy * 100), 'models/mnist_latest.pkl')
     print("Model finished training")
