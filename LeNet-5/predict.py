@@ -24,6 +24,6 @@ if __name__ == '__main__':
         value, predicted = torch.max(outputs.data, 1)
         plt.figure(i)
         plt.imshow(images.cpu()[0][0])
-        plt.title("Prediction: " + str(int(predicted)))
+        plt.title("Prediction: " + str(int(predicted)) + ", Probability: {:.3f} %".format(torch.exp(value).item() * 100))
     plt.show()
 
