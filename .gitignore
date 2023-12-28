@@ -1,0 +1,5 @@
+/.venv/
+/LeNet-5/data/
+/LeNet-5/models/
+/.idea/
+/LeNet-5/__pycache__/
