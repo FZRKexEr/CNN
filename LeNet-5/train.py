@@ -10,7 +10,7 @@ from torch.utils.tensorboard import SummaryWriter
 batch_size = 64
 number_classes = 10
 learning_rate = 0.001
-num_epochs = 10
+num_epochs = 100
 
 if __name__ == '__main__':
     print("CUDA Available: ", torch.cuda.is_available())
@@ -67,13 +67,13 @@ if __name__ == '__main__':
         if not os.path.isdir("models"):
             os.mkdir("models")
         torch.save(model, 'models/mnist_{:.3f}.pkl'.format(accuracy * 100))
-        if abs(accuracy - last_accuracy) < 1e-4:
-            last_accuracy = accuracy
-            break
+        # if abs(accuracy - last_accuracy) < 1e-4:
+        #    last_accuracy = accuracy
+        #    break
         last_accuracy = accuracy
 
     if os.path.exists('models/mnist_latest.pkl'):
         os.remove('models/mnist_latest.pkl')
     os.rename('models/mnist_{:.3f}.pkl'.format(last_accuracy * 100), 'models/mnist_latest.pkl')
     print("Model finished training")
-    writer.close();
+    writer.close()
